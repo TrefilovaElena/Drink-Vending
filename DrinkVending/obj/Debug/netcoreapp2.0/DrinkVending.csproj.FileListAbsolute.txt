@@ -1,0 +1,11 @@
+D:\VstudioProjects\DrinkVending\DrinkVending\bin\Debug\netcoreapp2.0\DrinkVending.deps.json
+D:\VstudioProjects\DrinkVending\DrinkVending\bin\Debug\netcoreapp2.0\DrinkVending.runtimeconfig.json
+D:\VstudioProjects\DrinkVending\DrinkVending\bin\Debug\netcoreapp2.0\DrinkVending.runtimeconfig.dev.json
+D:\VstudioProjects\DrinkVending\DrinkVending\bin\Debug\netcoreapp2.0\DrinkVending.dll
+D:\VstudioProjects\DrinkVending\DrinkVending\obj\Debug\netcoreapp2.0\DrinkVending.csprojResolveAssemblyReference.cache
+D:\VstudioProjects\DrinkVending\DrinkVending\obj\Debug\netcoreapp2.0\DrinkVending.csproj.CoreCompileInputs.cache
+D:\VstudioProjects\DrinkVending\DrinkVending\obj\Debug\netcoreapp2.0\DrinkVending.AssemblyInfoInputs.cache
+D:\VstudioProjects\DrinkVending\DrinkVending\obj\Debug\netcoreapp2.0\DrinkVending.AssemblyInfo.cs
+D:\VstudioProjects\DrinkVending\DrinkVending\bin\Debug\netcoreapp2.0\DrinkVending.pdb
+D:\VstudioProjects\DrinkVending\DrinkVending\obj\Debug\netcoreapp2.0\DrinkVending.dll
+D:\VstudioProjects\DrinkVending\DrinkVending\obj\Debug\netcoreapp2.0\DrinkVending.pdb

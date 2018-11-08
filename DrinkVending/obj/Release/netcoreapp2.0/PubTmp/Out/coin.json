@@ -1,0 +1,18 @@
+﻿{
+  "ConnectionStrings": {
+    "MyDatabase": "Server=USERENIUM\\SQLEXPRESS;Database=DrinkVendingdb;Trusted_Connection=True;"
+  },
+  "Logging": {
+    "IncludeScopes": false,
+    "Debug": {
+      "LogLevel": {
+        "Default": "Warning"
+      }
+    },
+    "Console": {
+      "LogLevel": {
+        "Default": "Warning"
+      }
+    }
+  }
+}

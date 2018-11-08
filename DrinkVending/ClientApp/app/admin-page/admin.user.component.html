@@ -1,0 +1,63 @@
+﻿<h1>Список пользователей</h1>
+<input type="button" value="Добавить" class="btn btn-default" (click)="addItem()" />
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <td>Логин</td>
+            <td>Имя</td>
+            <td>Фамилия</td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of items">
+            <ng-template [ngTemplateOutlet]="loadTemplate(item)"
+                         [ngTemplateOutletContext]="{ $implicit: item}">
+            </ng-template>
+        </tr>
+    </tbody>
+</table>
+
+<!--шаблон для чтения-->
+<ng-template #readOnlyTemplate let-item>
+    <td>{{item.username}}</td>
+    <td>{{item.firstName}}</td>
+    <td>{{item.lastName}}</td>
+    <td>
+        <input type="button" value="Удалить" (click)="deleteItem(item)" class="btn btn-danger" />
+    </td>
+</ng-template>
+<!--шаблон для редактирования-->
+<ng-template #editTemplate>
+    <div class="col-md-6 col-md-offset-3">
+        <h5>Добавить нового пользователя</h5>
+        <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !firstName.valid }">
+                <label for="firstName">Фамилия</label>
+                <input type="text" class="form-control" name="firstName" [(ngModel)]="model.firstName" #firstName="ngModel" required />
+                <div *ngIf="f.submitted && !firstName.valid" class="help-block">Введите имя</div>
+            </div>
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !lastName.valid }">
+                <label for="lastName">Имя</label>
+                <input type="text" class="form-control" name="lastName" [(ngModel)]="model.lastName" #lastName="ngModel" required />
+                <div *ngIf="f.submitted && !lastName.valid" class="help-block">Введите фамилию</div>
+            </div>
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+                <label for="username">Логин</label>
+                <input type="text" class="form-control" name="username" [(ngModel)]="model.username" #username="ngModel" required />
+                <div *ngIf="f.submitted && !username.valid" class="help-block">Введите логин</div>
+            </div>
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+                <label for="password">Пароль</label>
+                <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" required />
+                <div *ngIf="f.submitted && !password.valid" class="help-block">Введите пароль</div>
+            </div>
+            <div class="form-group">
+                <button [disabled]="loading" class="btn btn-primary">Добавить пользователя</button>
+                <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                <a (click)="cancel()" class="btn btn-link">Отмена</a>
+            </div>
+        </form>
+    </div>
+</ng-template>
+

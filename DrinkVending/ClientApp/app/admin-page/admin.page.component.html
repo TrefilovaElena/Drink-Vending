@@ -1,0 +1,15 @@
+﻿<div class="row">
+    <h3>Добро пожаловать, {{currentUser.firstName}}!</h3>
+    <a class="waves-effect waves-light btn" [routerLink]="['/login']">Выйти из режима редактирования</a>
+    <button class="waves-effect waves-light btn" (click)="changeModeState()" *ngIf="modeState">Пользователи</button>
+    <button class="waves-effect waves-light btn" (click)="changeModeState()" *ngIf="!modeState">Напитки и монеты</button>
+</div>
+<div class="row" *ngIf="modeState">
+    <admin-coin></admin-coin>
+</div>
+<div class="row" *ngIf="modeState">
+    <admin-drink></admin-drink>
+</div>
+<div class="row" *ngIf="!modeState">
+    <admin-user></admin-user>
+</div>

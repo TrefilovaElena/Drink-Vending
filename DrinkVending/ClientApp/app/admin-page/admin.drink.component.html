@@ -1,0 +1,81 @@
+﻿
+
+
+<div class="row">
+    <div *ngFor="let item of items">
+        <ng-template [ngTemplateOutlet]="loadTemplate(item)"
+                     [ngTemplateOutletContext]="{ $implicit: item}">
+        </ng-template>
+    </div>
+</div>
+<div class="row card-action">
+    <div class="alert alert-success">{{statusMessage}}</div>
+    <a (click)="addItem()" class="waves-effect waves-light">Добавить напиток</a>
+</div>
+
+
+
+    <!--шаблон для чтения-->
+    <ng-template #readOnlyTemplate let-item>
+
+        <div class="col s3">
+            <div class="card">
+                <div class="card-image">
+                    <img src="/files/{{ item.imageName }}" />
+                </div>
+                <div class="card-content">
+                    <span class="red-text">
+                        {{item.name}}
+                    </span>
+                    <p>Цена: {{item.price}}</p>
+                    <p>Количество: {{item.quantity}}</p>
+                </div>
+                <div class="card-action">
+                    <a (click)="editItem(item)" class="waves-effect waves-light">Изменить</a>
+                    <a (click)="deleteItem(item)" class="waves-effect waves-light">Удалить</a>
+                </div>
+            </div>
+        </div>
+
+
+    </ng-template>
+
+    <!--шаблон для редактирования-->
+                    <ng-template #editTemplate>
+                        <div class="col s5  blue lighten-5 ">
+                            <div class="card">
+                                <div>
+                                    <input type="file" name="student_img" required (change)="fileChange(input)" #input />
+                                </div>
+                                <div> <img [attr.src]='file_srcs' alt="" id="uploadPreview" /> </div>
+
+                                <div class="row">
+                                    <div class="input-field col s12">
+
+                                        <input type="text" class="validate" name="name" maxlength="100" #name="ngModel" required [(ngModel)]="editedItem.name">
+                                        <div [hidden]="name.valid || name.untouched" class="red-text"> Укажите название напитка</div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        Цена: 
+                                        <input type="number" name="price" pattern="^\d+$" class="validate" min="0" [(ngModel)]="editedItem.price" #price="ngModel" required>
+                                        <div [hidden]="price.valid || price.untouched" class="red-text">Укажите цену напитка</div>
+                                    </div>
+                                </div>
+
+
+                                <div class="input-field inline">
+                                    Количество:
+                                    <input type="number" class="validate" min="0" pattern="^\d+$" [(ngModel)]="editedItem.quantity" #quantity="ngModel" name="quantity" required>
+                                    <div [hidden]="quantity.valid || quantity.untouched || quantity < 0" class="red-text">Укажите количество</div>
+                                </div>
+                                <div class="card-action">
+                                    <a (click)="saveAll()" class="waves-effect waves-light btn" [ngClass]="{'disabled': name.invalid || price.invalid || quantity.invalid }">Сохранить </a>
+
+                                    <a (click)="cancel()" class="waves-effect waves-light btn">Отмена</a>
+                                </div>
+                            </div>
+                            </div>
+                    </ng-template>
