@@ -18,3 +18,45 @@
 
 
 
+Руководство пользователя:
+
+1. Выбирайте монеты, нажимая соотвествующую картинку. Заблокированные монеты неактивны. При этом увеличивается сумма, которую можно потратить на покупку и появляется возможность заказывать напитки, на которые этой суммы хватает.
+2.  Выбирайте напитки, нажимая кнопку «Выбрать» соотвествующего напитка. Если напиток кончается в автомате, то эта кнопка становится неактивной.
+3. Отмена. При выборе напитков есть возможность начать покупку заново. Для этого нажмите «отменить» рядом со списком покупок.
+4. Купить. Нажмите кнопку купить. Если внесена большая сумма, то появится окно со сдачей. После этого можно начинать новую покупку с п.1.
+
+Описание приложения.
+1. Предметная область описывается 3 основными классами:
+Монеты:
+        public id?: number,
+        public name?: number,
+        public quantity?: number,
+        public canUse?: Boolean 
+Напитки:
+        public id?: number,
+        public name?: string,
+        public price?: number,
+        public quantity?: number,
+        public imageName?: string
+Покупка: (содержит списки монет и напитков с количеством для данной покупки, а также сдачу: outCoinCollection).
+    private coinCollection: Array<CoinLine> = new Array<CoinLine>();
+    private drinkCollection: Array<DrinkLine> = new Array<DrinkLine>();
+    private outCoinCollection: Array<CoinLine> = new Array<CoinLine>();
+, где 
+       CoinLine:  public coin?: Coin,
+                  public purchaseQuantity?: number
+       DrinkLine: public drink?: Drink,
+                  public purchaseQuantity?: number
+
+Клиентская часть:
+
+1. Администрирование: ClientApp\app\admin-page
+
+состоит из трех частей:
+- admin.coin.component: редактирование монет (только изменение количества и блокировка)
+- admin.drink.component: редактирование напитков (удаление, добавление и изменение) 
+- admin.page.component: соединение первых двух страниц
+
+2.  Основная страница: ClientApp\app\home-page
+
+Все действия по покупке обрабатываются и сохраняются на клиенте с помощью класса purchase.ts. 
